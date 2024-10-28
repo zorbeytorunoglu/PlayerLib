@@ -13,6 +13,9 @@ import com.zorbeytorunoglu.playerlib.PLAY_PLAYER_COMMAND
 import com.zorbeytorunoglu.playerlib.PLAY_PLAYLIST_HLS_COMMAND
 import com.zorbeytorunoglu.playerlib.SEEK_TO_BUNDLE_KEY
 import com.zorbeytorunoglu.playerlib.SEEK_TO_COMMAND
+import com.zorbeytorunoglu.playerlib.SEEK_TO_INDEX_COMMAND
+import com.zorbeytorunoglu.playerlib.SEEK_TO_INDEX_MEDIA_INDEX_BUNDLE_KEY
+import com.zorbeytorunoglu.playerlib.SEEK_TO_INDEX_POSITION_BUNDLE_KEY
 import com.zorbeytorunoglu.playerlib.SEEK_TO_NEXT_COMMAND
 import com.zorbeytorunoglu.playerlib.SEEK_TO_NEXT_MEDIA_COMMAND
 import com.zorbeytorunoglu.playerlib.SEEK_TO_PREVIOUS_COMMAND
@@ -141,6 +144,16 @@ fun Context.seekTo(position: Long) {
     Intent(this, PlayerService::class.java).apply {
         action = SEEK_TO_COMMAND
         putExtra(SEEK_TO_BUNDLE_KEY, position)
+        startService(this)
+    }
+}
+
+@OptIn(UnstableApi::class)
+fun Context.seekTo(mediaItemIndex: Int, position: Long) {
+    Intent(this, PlayerService::class.java).apply {
+        action = SEEK_TO_INDEX_COMMAND
+        putExtra(SEEK_TO_INDEX_MEDIA_INDEX_BUNDLE_KEY, mediaItemIndex)
+        putExtra(SEEK_TO_INDEX_POSITION_BUNDLE_KEY, position)
         startService(this)
     }
 }

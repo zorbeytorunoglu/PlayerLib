@@ -28,6 +28,9 @@ import com.zorbeytorunoglu.playerlib.PlayerLib
 import com.zorbeytorunoglu.playerlib.PlayerLibSingleton
 import com.zorbeytorunoglu.playerlib.SEEK_TO_BUNDLE_KEY
 import com.zorbeytorunoglu.playerlib.SEEK_TO_COMMAND
+import com.zorbeytorunoglu.playerlib.SEEK_TO_INDEX_MEDIA_INDEX_BUNDLE_KEY
+import com.zorbeytorunoglu.playerlib.SEEK_TO_INDEX_COMMAND
+import com.zorbeytorunoglu.playerlib.SEEK_TO_INDEX_POSITION_BUNDLE_KEY
 import com.zorbeytorunoglu.playerlib.SEEK_TO_NEXT_COMMAND
 import com.zorbeytorunoglu.playerlib.SEEK_TO_NEXT_MEDIA_COMMAND
 import com.zorbeytorunoglu.playerlib.SEEK_TO_PREVIOUS_COMMAND
@@ -231,6 +234,12 @@ class PlayerService: MediaSessionService() {
                 }
                 SEEK_TO_COMMAND -> {
                     intent.extras?.getLong(SEEK_TO_BUNDLE_KEY)?.let { position -> player?.seekTo(position) }
+                }
+                SEEK_TO_INDEX_COMMAND -> {
+                    intent.extras?.getInt(SEEK_TO_INDEX_MEDIA_INDEX_BUNDLE_KEY)?.let { index ->
+                        val position = intent.extras?.getLong(SEEK_TO_INDEX_POSITION_BUNDLE_KEY) ?: 0L
+                        player?.seekTo(index, position)
+                    }
                 }
                 SEEK_TO_NEXT_MEDIA_COMMAND -> {
                     player?.seekToNextMediaItem()
