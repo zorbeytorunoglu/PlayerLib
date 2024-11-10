@@ -28,13 +28,13 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name="com.zorbeytorunoglu.playerlib.service.PlayerService"
-            android:enabled="true"
-            android:exported="false"
-            android:permission="android.permission.FOREGROUND_SERVICE"
-            android:foregroundServiceType="mediaPlayback">
-        </service>
+<!--        <service-->
+<!--            android:name="com.zorbeytorunoglu.playerlib.service.PlayerService"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="false"-->
+<!--            android:permission="android.permission.FOREGROUND_SERVICE"-->
+<!--            android:foregroundServiceType="mediaPlayback">-->
+<!--        </service>-->
 
     </application>
 
