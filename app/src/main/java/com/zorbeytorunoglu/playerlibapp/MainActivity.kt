@@ -18,13 +18,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-//                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 5858)
+//            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+//                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 5858)
 //            }
 //        }
 //
 //        PlayerLib.Builder().apply {
 //            setMainActivityClass(this@MainActivity.javaClass)
+//            setShouldStayAwake(true)
 //        }.build()
 //
 //        findViewById<Button>(R.id.button).setOnClickListener {
@@ -33,7 +34,12 @@ class MainActivity : AppCompatActivity() {
 //                description = "Herkes öldürür sevdiğini kardeş.",
 //                m3u8Url = "https://sesli-edergi.keove.com/birinci/tuncel-kurtiz-oysa-herkes-oldurur-sevdigini-siir-oscar-wilde.m3u8"
 //            )
-//            playTrack(track)
+//
+//            val tracks = mutableListOf<Track>().apply {
+//                repeat(10) { add(track) }
+//            }.toList()
+//
+//            playTracks(tracks)
 //        }
 
     }
