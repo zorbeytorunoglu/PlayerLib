@@ -54,6 +54,7 @@ class PlayerLib(
     internal val setColorized: Boolean? = null,
     internal val setColor: Int? = null,
     internal val setShowPlayButtonIfPlaybackIsSuppressed: Boolean? = null,
+    internal val setShouldStayAwake: Boolean = true,
     internal val onCreated: (() -> Unit)? = null,
     internal val onDestroy: (() -> Unit)? = null,
     internal val onPlaybackPositionUpdate: ((PlaybackDuration?, MediaItem?) -> Unit)? = null,
@@ -93,6 +94,7 @@ class PlayerLib(
         private var setColorized: Boolean? = null
         private var setColor: Int? = null
         private var setShowPlayButtonIfPlaybackIsSuppressed: Boolean? = null
+        private var setShouldStayAwake: Boolean = true
         private var onCreated: (() -> Unit)? = null
         private var onStarted: (() -> Unit)? = null
         private var onResumed: (() -> Unit)? = null
@@ -107,6 +109,10 @@ class PlayerLib(
         private var onAudioFocusLossTransient: (() -> Unit)? = null
         private var onAudioFocusLossTransientCanDuck: (() -> Unit)? = null
         private var onPlaybackPositionUpdate: ((PlaybackDuration?, MediaItem?) -> Unit)? = null
+
+        fun setShouldStayAwake(shouldStayAwake: Boolean) {
+            this.setShouldStayAwake = shouldStayAwake
+        }
 
         fun setChannelId(channelId: String) = apply {
             this.channelId = channelId
@@ -258,6 +264,7 @@ class PlayerLib(
                 setColorized = setColorized,
                 setColor = setColor,
                 setShowPlayButtonIfPlaybackIsSuppressed = setShowPlayButtonIfPlaybackIsSuppressed,
+                setShouldStayAwake = setShouldStayAwake,
                 onDestroy = onDestroyed,
                 onTaskRemoved = onTaskRemoved,
                 onCreated = onCreated,

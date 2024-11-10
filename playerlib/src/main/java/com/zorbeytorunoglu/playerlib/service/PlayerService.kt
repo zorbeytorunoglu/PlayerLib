@@ -10,6 +10,7 @@ import android.media.AudioManager
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.os.PowerManager
 import androidx.media3.common.C
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.DefaultDataSource
@@ -109,7 +110,12 @@ class PlayerService: MediaSessionService() {
             }
         }
 
-        player = ExoPlayer.Builder(this).build()
+        player = ExoPlayer.Builder(this).apply {
+            if (playerLib.setShouldStayAwake) {
+                setWakeMode(C.WAKE_MODE_NETWORK)
+                setPauseAtEndOfMediaItems(false)
+            }
+        }.build()
 
         mediaSession = MediaSession.Builder(this, player!!).apply {
             playerLib.periodicPositionUpdateEnabled?.let { setPeriodicPositionUpdateEnabled(it) }
@@ -186,9 +192,11 @@ class PlayerService: MediaSessionService() {
     }
 
     override fun onDestroy() {
-        releaseService()
-        playerLib.onDestroy?.invoke()
-        super.onDestroy()
+        if (!playerLib.setShouldStayAwake) {
+            releaseService()
+            playerLib.onDestroy?.invoke()
+            super.onDestroy()
+        }
     }
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession? {
@@ -293,25 +301,6 @@ class PlayerService: MediaSessionService() {
         }
         onPositionUpdateHandler.removeCallbacksAndMessages(null)
         stopSelf()
-    }
-
-    private fun isPlayerPlaying(): Boolean {
-        if (player == null) return false
-
-        if (
-            player!!.isReleased
-            || !player!!.isPlaying
-            || player!!.playbackState == ExoPlayer.STATE_IDLE
-            || player!!.playbackState == ExoPlayer.STATE_ENDED
-            || player!!.mediaItemCount == 0
-            || player!!.currentMediaItem == null
-            || player!!.isLoading
-            || player!!.playerError != null
-        )
-            return false
-
-        return true
-
     }
 
 }
