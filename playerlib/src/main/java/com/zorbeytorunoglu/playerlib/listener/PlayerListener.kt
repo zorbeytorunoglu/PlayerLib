@@ -1,51 +1,48 @@
 package com.zorbeytorunoglu.playerlib.listener
 
-import androidx.annotation.OptIn
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
-import androidx.media3.common.util.UnstableApi
 import com.zorbeytorunoglu.playerlib.PlayerLib
 
-@OptIn(UnstableApi::class)
 class PlayerListener(
-    private val playerLib: PlayerLib
+    private val pLibConfig: PlayerLib.Config
 ): Player.Listener {
 
     override fun onPlayerError(error: PlaybackException) {
         super.onPlayerError(error)
-        playerLib.onPlayerEvent?.invoke(PlayerEvent.PlayerError(error))
+        pLibConfig.onPlayerEvent?.invoke(PlayerEvent.PlayerError(error))
     }
 
     override fun onPlaybackStateChanged(playbackState: Int) {
         super.onPlaybackStateChanged(playbackState)
-        playerLib.onPlayerEvent?.invoke(PlayerEvent.PlaybackStateChanged(playbackState))
+        pLibConfig.onPlayerEvent?.invoke(PlayerEvent.PlaybackStateChanged(playbackState))
     }
 
     override fun onDeviceVolumeChanged(volume: Int, muted: Boolean) {
         super.onDeviceVolumeChanged(volume, muted)
-        playerLib.onPlayerEvent?.invoke(PlayerEvent.DeviceVolumeChanged(volume, muted))
+        pLibConfig.onPlayerEvent?.invoke(PlayerEvent.DeviceVolumeChanged(volume, muted))
     }
 
     override fun onIsPlayingChanged(isPlaying: Boolean) {
         super.onIsPlayingChanged(isPlaying)
-        playerLib.onPlayerEvent?.invoke(PlayerEvent.IsPlayingChanged(isPlaying))
+        pLibConfig.onPlayerEvent?.invoke(PlayerEvent.IsPlayingChanged(isPlaying))
     }
 
     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
         super.onMediaItemTransition(mediaItem, reason)
-        playerLib.onPlayerEvent?.invoke(PlayerEvent.MediaItemTransition(mediaItem, reason))
+        pLibConfig.onPlayerEvent?.invoke(PlayerEvent.MediaItemTransition(mediaItem, reason))
     }
 
     override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
         super.onMediaMetadataChanged(mediaMetadata)
-        playerLib.onPlayerEvent?.invoke(PlayerEvent.MediaMetadataChanged(mediaMetadata))
+        pLibConfig.onPlayerEvent?.invoke(PlayerEvent.MediaMetadataChanged(mediaMetadata))
     }
 
     override fun onPlayerErrorChanged(error: PlaybackException?) {
         super.onPlayerErrorChanged(error)
-        playerLib.onPlayerEvent?.invoke(PlayerEvent.PlayerErrorChanged(error))
+        pLibConfig.onPlayerEvent?.invoke(PlayerEvent.PlayerErrorChanged(error))
     }
 
     override fun onPositionDiscontinuity(
@@ -54,7 +51,7 @@ class PlayerListener(
         reason: Int
     ) {
         super.onPositionDiscontinuity(oldPosition, newPosition, reason)
-        playerLib.onPlayerEvent?.invoke(
+        pLibConfig.onPlayerEvent?.invoke(
             PlayerEvent.OnPositionDiscontinuity(
                 oldPosition,
                 newPosition,
