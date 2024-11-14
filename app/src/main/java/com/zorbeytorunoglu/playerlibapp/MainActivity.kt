@@ -57,7 +57,7 @@ class MainActivity: AppCompatActivity() {
 
     }
 
-    // this is required for PlayerLib to be able to display foreground service
+    // this is required (for some versions of android) for PlayerLib to be able to display foreground service
     private fun askNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
