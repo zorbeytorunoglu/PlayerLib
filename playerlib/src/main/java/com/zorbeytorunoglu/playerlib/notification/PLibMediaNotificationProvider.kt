@@ -31,6 +31,7 @@ class PLibMediaNotificationProvider(
         actionFactory: MediaNotification.ActionFactory
     ): IntArray {
 
+        PlayerLib.instance.config.smallIcon?.let { builder.setSmallIcon(it) }
         builder.setLargeIcon(PlayerLib.instance.config.largeIcon)
 
         val fastForward = CommandButton.Builder()

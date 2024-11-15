@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.IconCompat
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
@@ -161,6 +162,7 @@ class PlayerLib(internal val config: Config) {
         internal val context: Context,
         internal val sessionActivity: Class<out Activity>?,
         internal val largeIcon: Bitmap?,
+        internal val smallIcon: IconCompat?,
         internal val positionUpdateDelay: Long,
         internal val redirectionIntentBundle: Bundle?,
         internal val channelId: String,
@@ -197,6 +199,7 @@ class PlayerLib(internal val config: Config) {
             private var context: Context? = null
             private var sessionActivity: Class<out Activity>? = null
             private var largeIcon: Bitmap? = null
+            private var smallIcon: IconCompat? = null
             private var positionUpdateDelay: Long = 1000L
             private var redirectionIntentBundle: Bundle? = null
             private var channelId: String = DEFAULT_CHANNEL_ID
@@ -239,6 +242,10 @@ class PlayerLib(internal val config: Config) {
 
             fun setLargeIcon(bitmap: Bitmap) {
                 this.largeIcon = bitmap
+            }
+
+            fun setSmallIcon(icon: IconCompat) {
+                this.smallIcon = icon
             }
 
             fun setPositionUpdateDelay(delay: Long) {
@@ -372,6 +379,7 @@ class PlayerLib(internal val config: Config) {
                     context = context!!,
                     sessionActivity = sessionActivity,
                     largeIcon = largeIcon,
+                    smallIcon = smallIcon,
                     positionUpdateDelay = positionUpdateDelay,
                     redirectionIntentBundle = redirectionIntentBundle,
                     channelId = channelId,
