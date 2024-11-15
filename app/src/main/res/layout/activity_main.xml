@@ -62,4 +62,53 @@
         app:layout_constraintStart_toStartOf="@+id/seekToNext"
         app:layout_constraintTop_toBottomOf="@+id/seekToNext" />
 
+    <Button
+        android:id="@+id/setPlaybackSpeed1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="speed 1"
+        app:layout_constraintEnd_toStartOf="@+id/setPlaybackSpeed1_25"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekToPrevious" />
+
+    <Button
+        android:id="@+id/setPlaybackSpeed1_25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="speed 1.25"
+        app:layout_constraintEnd_toStartOf="@+id/setPlaybackSpeed1_5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/setPlaybackSpeed1"
+        app:layout_constraintTop_toBottomOf="@+id/seekToPrevious" />
+
+    <Button
+        android:id="@+id/setPlaybackSpeed1_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="speed 1.5"
+        app:layout_constraintEnd_toStartOf="@+id/setPlaybackSpeed2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/setPlaybackSpeed1_25"
+        app:layout_constraintTop_toBottomOf="@+id/seekToPrevious" />
+
+    <Button
+        android:id="@+id/setPlaybackSpeed2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="speed 2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/setPlaybackSpeed1_5"
+        app:layout_constraintTop_toBottomOf="@+id/seekToPrevious" />
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="just play"
+        app:layout_constraintEnd_toStartOf="@+id/stop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
