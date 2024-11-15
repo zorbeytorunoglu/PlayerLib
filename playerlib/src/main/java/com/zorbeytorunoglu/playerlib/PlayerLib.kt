@@ -158,6 +158,14 @@ class PlayerLib(internal val config: Config) {
         mediaController?.playWhenReady = playWhenReady
     }
 
+    fun hasPreviousMediaItem(): Boolean = mediaController?.hasPreviousMediaItem() == true
+
+    fun hasNextMediaItem(): Boolean = mediaController?.hasNextMediaItem() == true
+
+    fun setPlaybackSpeed(speed: Float) {
+        mediaController?.setPlaybackSpeed(speed)
+    }
+
     class Config private constructor(
         internal val context: Context,
         internal val sessionActivity: Class<out Activity>?,
