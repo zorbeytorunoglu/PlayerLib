@@ -54,6 +54,21 @@ class MainActivity: AppCompatActivity() {
         findViewById<Button>(R.id.seekToPrevious).setOnClickListener {
             PlayerLib.instance.seekToPrevious()
         }
+        findViewById<Button>(R.id.play).setOnClickListener {
+            PlayerLib.instance.play()
+        }
+        findViewById<Button>(R.id.setPlaybackSpeed1).setOnClickListener {
+            PlayerLib.instance.setPlaybackSpeed(1f)
+        }
+        findViewById<Button>(R.id.setPlaybackSpeed1_25).setOnClickListener {
+            PlayerLib.instance.setPlaybackSpeed(1.25f)
+        }
+        findViewById<Button>(R.id.setPlaybackSpeed1_5).setOnClickListener {
+            PlayerLib.instance.setPlaybackSpeed(1.5f)
+        }
+        findViewById<Button>(R.id.setPlaybackSpeed2).setOnClickListener {
+            PlayerLib.instance.setPlaybackSpeed(2f)
+        }
 
     }
 
