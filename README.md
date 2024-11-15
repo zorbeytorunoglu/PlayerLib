@@ -83,7 +83,7 @@ Second, you need to have the PlayerLib's service declared in your app's manifest
 There are a lot of configurations options to list them all here. Some of them will be explained in here yet others are pretty much self explanatory.
 
 - sessionActivity (nullable): When users clicks on the foreground notification, they will be heading to this activity. If you make it null, the tap will do nothing.
-- largeIcon (nullable): We can say that it's some sort of a background icon of the notification.
+- largeIcon (nullable): We can say that it's some sort of a background icon of the notification (for some devices, each model like Samsung, Xiaomi, Oppo they all have different media notification styles. You need to test to see what fits for you.).
 - periodicPositionUpdateEnabled & onPlaybackPositionUpdate (nullable): There are no built in callbacks/listeners that is being executed to notify its subscribers about the current position of the current media item. There is only one built in way (as far as I could see), yet, if I recall right, it is being executed every nanosecond, which probably would make the user's life harder. So, we had to make a custom handler on it, which is triggered each second (configurable) untill the service's death.
 - There are many other configurations, check them all out in the scope of the config builder.
   Simple configuration:
@@ -145,22 +145,37 @@ There are a lot of configurations options to list them all here. Some of them wi
 
 All media related commands are going through PlayerLib.instance (or your own singleton). Here is an example:
 ```kotlin
-        findViewById<Button>(R.id.button).setOnClickListener {
-            PlayerLib.instance.play(tracks)
-        }
-        findViewById<Button>(R.id.stop).setOnClickListener {
-            PlayerLib.instance.stop()
-        }
-        findViewById<Button>(R.id.pause).setOnClickListener {
-            PlayerLib.instance.pause()
-        }
-        findViewById<Button>(R.id.seekToNext).setOnClickListener {
-            PlayerLib.instance.seekToNext()
-        }
-        findViewById<Button>(R.id.seekToPrevious).setOnClickListener {
-            PlayerLib.instance.seekToPrevious()
-        }
-        // other commands, check them all out in PlayerLib.instance
+findViewById<Button>(R.id.button).setOnClickListener {
+    PlayerLib.instance.play(tracks)
+}
+findViewById<Button>(R.id.stop).setOnClickListener {
+    PlayerLib.instance.stop()
+}
+findViewById<Button>(R.id.pause).setOnClickListener {
+    PlayerLib.instance.pause()
+}
+findViewById<Button>(R.id.seekToNext).setOnClickListener {
+    PlayerLib.instance.seekToNext()
+}
+findViewById<Button>(R.id.seekToPrevious).setOnClickListener {
+    PlayerLib.instance.seekToPrevious()
+}
+findViewById<Button>(R.id.play).setOnClickListener {
+    PlayerLib.instance.play()
+}
+findViewById<Button>(R.id.setPlaybackSpeed1).setOnClickListener {
+    PlayerLib.instance.setPlaybackSpeed(1f)
+}
+findViewById<Button>(R.id.setPlaybackSpeed1_25).setOnClickListener {
+    PlayerLib.instance.setPlaybackSpeed(1.25f)
+}
+findViewById<Button>(R.id.setPlaybackSpeed1_5).setOnClickListener {
+    PlayerLib.instance.setPlaybackSpeed(1.5f)
+}
+findViewById<Button>(R.id.setPlaybackSpeed2).setOnClickListener {
+    PlayerLib.instance.setPlaybackSpeed(2f)
+}
+// other commands, check them all out in PlayerLib.instance
 ```
 
 [Sample App]: <https://github.com/zorbeytorunoglu/PlayerLib/tree/master/app>
